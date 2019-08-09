@@ -16,18 +16,6 @@ import { connect } from "react-redux";
 
 
 class AuthExample extends Component {
-
-// const fakeAuth = {
-//   isAuthenticated: false,
-//   authenticate(cb) {
-//     this.isAuthenticated = true;
-//     setTimeout(cb, 100); // fake async
-//   },
-//   signout(cb) {
-//     this.isAuthenticated = false;
-//     setTimeout(cb, 100);
-//   }
-// };
 render(){
   return (
     <Router>

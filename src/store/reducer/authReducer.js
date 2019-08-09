@@ -12,7 +12,8 @@ const authReducer = (state = {
   isAuthenticated: false,
   error:null,
   isLoginCancel: null, 
-  isLoginFailed: null
+  isLoginFailed: null,
+  status: null
 }, action) => {
   console.log('authReducer action:',action)
   switch (action.type) {

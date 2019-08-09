@@ -7,6 +7,8 @@ import {
   withRouter
 } from "react-router-dom";
 import { connect } from "react-redux";
+import "../App.css";
+
 
 class PrivateRoute extends Component {
   render() {
@@ -18,12 +20,14 @@ class PrivateRoute extends Component {
           return isAuthenticated ? (
             <ProtectedComponent {...this.props} />
           ) : (
-            <Redirect
-              to={{
-                pathname: "/login",
-                state: { from: props.location.pathname }
-              }}
-            />
+            <div>
+              <Redirect
+                to={{
+                  pathname: "/login",
+                  state: { from: props.location.pathname }
+                }}
+              />
+            </div>
           );
         }}
       />

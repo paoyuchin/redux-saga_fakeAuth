@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 
 const Protected = () => {
-  return <h3> you are in Protected page</h3>;
+  return <p> you are in Protected page</p>;
 };
 
 export default Protected;

@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 const Public = () => {
-  return <h3 > Public </h3>;
+  return <p > Public </p>;
 }
 
 export default Public;

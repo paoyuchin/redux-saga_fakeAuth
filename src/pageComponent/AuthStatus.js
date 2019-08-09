@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
@@ -8,29 +7,29 @@ import {
   Redirect,
   withRouter
 } from "react-router-dom";
-import {LogOut} from "../store/action/actions";
-
+import { LogOut } from "../store/action/actions";
+import "../App.css";
+import { Button } from "reactstrap";
 
 class AuthStatus extends Component {
-
-  render(){
-    return(
-        this.props.isAuthenticated ? (
-          <p>
-            Welcome!
-            <button
-              onClick={() => {
-              this.props.logout();
-              this.props.history.push("/");
-              }}
-            >
-              Sign out
-        </button>
-          </p>
-        ) : (
-            <p>You are not logged in.</p>
-          )
-    )
+  render() {
+    return this.props.isAuthenticated ? (
+      <p>
+        Welcome!
+        <Button
+          size="sm"
+          color="primary"
+          onClick={() => {
+            this.props.logout();
+            this.props.history.push("/");
+          }}
+        >
+          Sign out
+        </Button>
+      </p>
+    ) : (
+      <p>You are not signed in.</p>
+    );
   }
 }
 
@@ -48,6 +47,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AuthStatus));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(AuthStatus)
+);
