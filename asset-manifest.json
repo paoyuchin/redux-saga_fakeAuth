@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/redux-saga_fakeAuth/static/css/main.34de6062.chunk.css",
-    "main.js": "/redux-saga_fakeAuth/static/js/main.42d966f0.chunk.js",
-    "main.js.map": "/redux-saga_fakeAuth/static/js/main.42d966f0.chunk.js.map",
+    "main.css": "/redux-saga_fakeAuth/static/css/main.77986de4.chunk.css",
+    "main.js": "/redux-saga_fakeAuth/static/js/main.bf44c87b.chunk.js",
+    "main.js.map": "/redux-saga_fakeAuth/static/js/main.bf44c87b.chunk.js.map",
     "runtime~main.js": "/redux-saga_fakeAuth/static/js/runtime~main.9343e8c8.js",
     "runtime~main.js.map": "/redux-saga_fakeAuth/static/js/runtime~main.9343e8c8.js.map",
     "static/css/2.22a7d4ef.chunk.css": "/redux-saga_fakeAuth/static/css/2.22a7d4ef.chunk.css",
-    "static/js/2.c2e78dae.chunk.js": "/redux-saga_fakeAuth/static/js/2.c2e78dae.chunk.js",
-    "static/js/2.c2e78dae.chunk.js.map": "/redux-saga_fakeAuth/static/js/2.c2e78dae.chunk.js.map",
+    "static/js/2.144c1784.chunk.js": "/redux-saga_fakeAuth/static/js/2.144c1784.chunk.js",
+    "static/js/2.144c1784.chunk.js.map": "/redux-saga_fakeAuth/static/js/2.144c1784.chunk.js.map",
     "index.html": "/redux-saga_fakeAuth/index.html",
-    "precache-manifest.c84402ef0291df8bd9769bff0cb88aa5.js": "/redux-saga_fakeAuth/precache-manifest.c84402ef0291df8bd9769bff0cb88aa5.js",
+    "precache-manifest.2b99507ee32da530f3637fef6f8a2d09.js": "/redux-saga_fakeAuth/precache-manifest.2b99507ee32da530f3637fef6f8a2d09.js",
     "service-worker.js": "/redux-saga_fakeAuth/service-worker.js",
     "static/css/2.22a7d4ef.chunk.css.map": "/redux-saga_fakeAuth/static/css/2.22a7d4ef.chunk.css.map",
-    "static/css/main.34de6062.chunk.css.map": "/redux-saga_fakeAuth/static/css/main.34de6062.chunk.css.map"
+    "static/css/main.77986de4.chunk.css.map": "/redux-saga_fakeAuth/static/css/main.77986de4.chunk.css.map"
   }
 }
