@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1e9ae5a1717c0455e855cf9935787ea0",
+    "revision": "6e80dda9f68f6d69a05db3134b8c5171",
     "url": "/redux-saga_fakeAuth/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/redux-saga_fakeAuth/static/css/2.22a7d4ef.chunk.css"
   },
   {
-    "revision": "f72d9c14d488fbde6979",
+    "revision": "6382515c1a6f19fb9026",
     "url": "/redux-saga_fakeAuth/static/css/main.34de6062.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/redux-saga_fakeAuth/static/js/2.c2e78dae.chunk.js"
   },
   {
-    "revision": "f72d9c14d488fbde6979",
-    "url": "/redux-saga_fakeAuth/static/js/main.58138073.chunk.js"
+    "revision": "6382515c1a6f19fb9026",
+    "url": "/redux-saga_fakeAuth/static/js/main.42d966f0.chunk.js"
   },
   {
     "revision": "e5930a95b09cf276e52e",
