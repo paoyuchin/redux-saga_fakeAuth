@@ -22,6 +22,13 @@ export function LogOut() {
   }
 }
 
+export function LoginCancel() {
+  console.log(55, 'LoginCancel')
+  return {
+    type: LOGIN_CANCEL
+  }
+}
+
 export function loginFailed(error) {
   return {
     type: LOGINFAILED,
@@ -47,10 +54,3 @@ export function loginSuccess(response) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
-
-
-export function loginCancel() {
-  return {
-    type: LOGIN_CANCEL
-  }
-}

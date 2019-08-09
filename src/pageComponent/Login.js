@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
-  LoginRequest
+  LoginRequest,
+  LoginCancel
 } from "../store/action/actions";
-// import SignInForm from "./SignInForm";
 import {
   Button,
   Modal,
@@ -97,7 +97,7 @@ class Login extends Component {
               </FormGroup>
               {this.props.errorMessage ? <p>{this.props.errorMessage.message}</p> : null} 
               <ModalFooter>
-                <Button color="primary" onClick={this.toggle}>
+                <Button color="primary" onClick={this.props.loginCancel}>
                   cancel
                 </Button>
                 <Button color="secondary" onSubmit={this.handleSubmit}>
@@ -112,18 +112,19 @@ class Login extends Component {
   }
 }
 const mapStateToProps = state => {
+  console.log('Login state', state)
   return {
     isAuthenticated: state.auth.isAuthenticated,
     isLoginFailed: state.auth.isLoginFailed,
-    errorMessage: state.auth.error
+    errorMessage: state.auth.error,
+    isLoginCancel: state.auth.isLoginCancel
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    login: credential => {
-      dispatch(LoginRequest(credential));
-    }
+    login: credential => {dispatch(LoginRequest(credential))},
+    loginCancel: () => {dispatch(LoginCancel())}
   };
 };
 

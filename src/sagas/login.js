@@ -34,7 +34,6 @@ export function* logoutFlow() {
 export function* authorize(action){
     console.log(3, 'authorized', action.credential)
     try {
-        console.log(4, 'try', action.credentiall)
         const response = yield call(loginAPI, action.credential)
         yield put({
             type: LOGIN_SUCCESS,
@@ -46,16 +45,17 @@ export function* authorize(action){
             type: LOGIN_ERROR,
             error
         })
+    } finally {
+        console.log('cancelled')
     }
 }
 
 export function* loginFlow(action) {
-    console.log(2, 'login flow', action)
+    console.log('login flow', action)
     const task = yield fork(authorize, action)
     yield take(LOGIN_CANCEL)
     yield cancel(task)
 }
-
 // export function* logout(action) {
 //     console.log(886, 'logout', action)
 //     const task = yield fork(authorize, action)

@@ -4,19 +4,17 @@ import {
   LOGIN_ERROR,
   LOGIN_CANCEL,
   LOGOUT,
-  LOGINFAILED
+  LOGIN_FAILED,
+  LOGOUT_SUCCESS,
 } from '../action/actions'
-
-// const initState = {
-//   isAuthenticated: false,
-//   isLoginFailed: null,
-// };
 
 const authReducer = (state = {
   isAuthenticated: false,
-  error:null
+  error:null,
+  isLoginCancel: null, 
+  isLoginFailed: null
 }, action) => {
-  console.log('actionnnnnnn',action)
+  console.log('authReducer action:',action)
   switch (action.type) {
     case LOGIN_REQUEST:
       return {
@@ -40,13 +38,13 @@ const authReducer = (state = {
         isAuthenticated: false,
         isLoginFailed: true,
       }
-    case 'LOGOUT_SUCCESS':
+    case LOGOUT_SUCCESS:
       return {
         isAuthenticated: false,
       }
     case LOGIN_CANCEL:
       return {
-        status: 'init'
+        isLoginCancel: true
       }
       default:
         return state

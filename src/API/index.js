@@ -20,33 +20,16 @@ function fetchAPI(url, options) {
 
 export function loginAPI(credential) {
   console.log('credentai', credential)
-  // return () => (
-  //   {
-  //     // username,
-  //     // password,
-  //   }
-  // );
   return new Promise(function (resolve, reject) {
     setTimeout(function () {
       console.log(credential)
-    if (credential.username === 'f' && credential.password === 'f') {
-      console.log('right!!!!!!!!!!!')
-          resolve(true);
-      }else{
-        console.log('wrong!!!!!!!!!')
-        reject(new Error('wrong password or username'));
-      }
-    }, 500)
-  });
+      if (credential.username === 'f' && credential.password === 'f') {
+        console.log('right password and username')
+            resolve(true);
+        }else{
+          console.log('wrong')
+          reject(new Error('wrong password or username'));
+        }
+      }, 5000)
+    });
 }
-
-//return fetchAPI('/api/login', {
-//  headers: {
-//    'Content-Type': 'application/json'
-//  },
-//  method: "POST",
-//  body: JSON.stringify({
-//    username,
-//    password
-//  })
-//})
