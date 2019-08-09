@@ -23,7 +23,7 @@ export function loginAPI(credential) {
   return new Promise(function (resolve, reject) {
     setTimeout(function () {
       console.log(credential)
-      if (credential.username === 'f' && credential.password === 'f') {
+      if (credential.username === 'guest' && credential.password === 'guest') {
         console.log('right password and username')
             resolve(true);
         }else{

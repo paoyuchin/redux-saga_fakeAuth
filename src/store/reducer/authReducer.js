@@ -50,28 +50,5 @@ const authReducer = (state = {
         return state
   }
 }
-// const authReducer = (state = initState, action) => {
-//   switch (action.type) {
-//     case 'LOGIN_SUCCESS':
-//       return Object.assign({}, state, {
-//         isAuthenticated: true,
-//         isLoginFailed: null,        
-//       })
-//       break;
-//     case 'LOGIN_FAILED':
-//       return Object.assign({}, state, {
-//         isAuthenticated: false,
-//         isLoginFailed: true,
-//       })
-//       break; 
-//     case 'LOGOUT':
-//       return Object.assign({}, state, {
-//         isAuthenticated: false,
-//       })
-//     break;
-//     default:
-//       return state;
-//   }
-// };
 
 export default authReducer;
