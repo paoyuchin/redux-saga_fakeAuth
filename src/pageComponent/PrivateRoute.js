@@ -15,7 +15,6 @@ class PrivateRoute extends Component {
       <Route
         {...this.props}
         render={props => {
-          console.log(100, props)
           return isAuthenticated ? (
             <ProtectedComponent {...this.props} />
           ) : (

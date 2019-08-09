@@ -8,7 +8,7 @@ import {
   Redirect,
   withRouter
 } from "react-router-dom";
-import { authAction_Logout } from "../store/action/actions";
+import {LogOut} from "../store/action/actions";
 
 
 class AuthStatus extends Component {
@@ -43,7 +43,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     logout: () => {
-      dispatch(authAction_Logout());
+      dispatch(LogOut());
     }
   };
 };

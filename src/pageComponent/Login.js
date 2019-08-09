@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { authAction_Login } from "../store/action/actions";
+import {
+  LoginRequest
+} from "../store/action/actions";
 // import SignInForm from "./SignInForm";
 import {
   Button,
@@ -50,7 +52,6 @@ class Login extends Component {
     this.setState({
       [e.target.id]: e.target.value
     });
-    console.log("handleChange", this.state);
   };
   handleSubmit = e => {
     e.preventDefault();
@@ -60,13 +61,11 @@ class Login extends Component {
     let { from } = this.props.location.state || { from: { pathname: "/" } };
     // let { redirectToReferrer } = this.state;
     // if (redirectToReferrer) return <Redirect to={from} />;
-    console.log("login proprs", this.props);
     if (this.props.isAuthenticated) {
       this.props.history.push("/protected");
     }
     return (
       <div>
-        <p>You must log in to view the page at {from}</p>
         <div>
           <Button color="danger" onClick={this.toggle}>
             login
@@ -82,7 +81,6 @@ class Login extends Component {
                 <Label for="exampleEmail">username</Label>
                 <Input
                   onChange={this.handleChange}
-                  // type="email"
                   name="email"
                   id="username"
                   placeholder="username"
@@ -92,14 +90,12 @@ class Login extends Component {
                 <Label for="examplePassword">password</Label>
                 <Input
                   onChange={this.handleChange}
-                  // type="password"
                   name="password"
                   id="password"
                   placeholder="password"
                 />
               </FormGroup>
-              {this.props.isLoginFailed ? <div>incorrect username or password</div> : null
-              }
+              {this.props.errorMessage ? <p>{this.props.errorMessage.message}</p> : null} 
               <ModalFooter>
                 <Button color="primary" onClick={this.toggle}>
                   cancel
@@ -115,18 +111,18 @@ class Login extends Component {
     );
   }
 }
-
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
-    isLoginFailed: state.auth.isLoginFailed
+    isLoginFailed: state.auth.isLoginFailed,
+    errorMessage: state.auth.error
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     login: credential => {
-      dispatch(authAction_Login(credential));
+      dispatch(LoginRequest(credential));
     }
   };
 };

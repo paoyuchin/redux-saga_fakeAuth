@@ -1,22 +1,56 @@
-export const authAction_Login = (credential) => {
-  return (dispatch, getState) => {
-    if (credential.username === 'f' && credential.password === 'f') {
-        dispatch({
-          type: 'LOGIN_SUCCESS'
-        })
-    }else{
-        dispatch({
-          type: 'LOGIN_FAILED',
-        })  
-    }
+
+export const LOGIN_REQUEST = 'LOGIN_REQUEST';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const LOGIN_CANCEL = 'LOGIN_CANCEL';
+export const LOGOUT = 'LOGOUT';
+export const LOGINFAILED = 'LOGINFAILED';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
+
+export function LoginRequest(credential) {
+  console.log('LoginRequest in action',  credential)
+  return {
+    type: LOGIN_REQUEST,
+    credential
+  }
+};
+
+export function LogOut() {
+  return {
+    type: LOGOUT_REQUEST,
+  }
+}
+
+export function loginFailed(error) {
+  return {
+    type: LOGINFAILED,
+    error
   }
 }
 
 
-export const authAction_Logout = () => {
-  return (dispatch, getState) => {
-    dispatch({
-      type:'LOGOUT'
-    })
+
+export function loginRequest({username,password}) {
+  return {
+    type: LOGIN_REQUEST,
+    username,
+    password
+  }
+}
+
+export function loginSuccess(response) {
+  return {
+    type: LOGIN_SUCCESS,
+    response
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+
+export function loginCancel() {
+  return {
+    type: LOGIN_CANCEL
   }
 }

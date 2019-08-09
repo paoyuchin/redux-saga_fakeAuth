@@ -11,17 +11,22 @@ import { Provider } from 'react-redux';
 import rootReducer from './store/reducer/rootReducer';
 import 'bootstrap/dist/css/bootstrap.css';
 import thunk from 'redux-thunk';
-// import ReduxThunk from 'redux-thunk'
+import rootSaga from './sagas';
+
+const sagaMiddleware = createSagaMiddleware()
 
 const store = createStore(
   rootReducer,
-  applyMiddleware(thunk)
+  applyMiddleware(thunk, sagaMiddleware)
 );
+sagaMiddleware.run(rootSaga)
 
-
-ReactDOM.render(<Provider store={store}>
-  <App />
-</Provider>, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
