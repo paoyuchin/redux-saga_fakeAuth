@@ -1,26 +1,70 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import AuthStatus from './pageComponent/AuthStatus';
+import PrivateRoute from "./pageComponent/PrivateRoute";
+import Login from './pageComponent/Login';
+import Public from './pageComponent/Public';
+import Protected from './pageComponent/Protected';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from "react-router-dom";
+import { connect } from "react-redux";
 
-function App() {
+
+
+class AuthExample extends Component {
+
+// const fakeAuth = {
+//   isAuthenticated: false,
+//   authenticate(cb) {
+//     this.isAuthenticated = true;
+//     setTimeout(cb, 100); // fake async
+//   },
+//   signout(cb) {
+//     this.isAuthenticated = false;
+//     setTimeout(cb, 100);
+//   }
+// };
+render(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <AuthStatus />
+        <ul>
+          <li>
+            <Link to="/public">Public Page</Link>
+          </li>
+          <li>
+            <Link to="/protected">Protected Page</Link>
+          </li>
+        </ul>
+        <Route path="/public" component={Public} />
+        <PrivateRoute
+          path="/protected"
+          ProtectedComponent={Protected}
+          isAuthenticated={this.props.isAuthenticated}
+        />
+        <Route
+          path="/login"
+          render={props => <Login {...props} />}
+        />
+      </div>
+    </Router>
   );
 }
 
-export default App;
+}
+
+
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated
+  };
+};
+
+
+export default connect(mapStateToProps)(AuthExample);
+
