@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../App.css";
 import { connect } from "react-redux";
-import { LoginRequest, LoginCancel } from "../store/action/actions";
+import { loginRequest, loginCancel } from "../store/action/actions";
 import {
   Button,
   Modal,
@@ -12,14 +12,8 @@ import {
   FormGroup,
   Label,
   Input,
-  FormText,
   FormFeedback
 } from "reactstrap";
-import Spinner from "react-bootstrap/Spinner";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import Button1 from "react-bootstrap/Button";
-import ButtonToolbar from "react-bootstrap/ButtonToolbar";
-
 import {
   BrowserRouter as Router,
   Route,
@@ -27,6 +21,10 @@ import {
   Redirect,
   withRouter
 } from "react-router-dom";
+import Spinner from "react-bootstrap/Spinner";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Button1 from "react-bootstrap/Button";
+import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 
 const Loading = () => {
   return (
@@ -51,7 +49,8 @@ class Login extends Component {
     this.state = {
       modal: false,
       username: "",
-      password: ""
+      password: "",
+      showEmptyInputMessage: false
     };
   }
 
@@ -60,32 +59,31 @@ class Login extends Component {
       modal: !prevState.modal
     }));
   };
-  checkIsValidUser = () => {
-    if (this.props.isAuthenticated) {
-      this.toggle();
-      this.props.history.push("/protected");
-    }
-  };
 
   handleChange = e => {
     this.setState({
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
+      showEmptyInputMessage: false      
     });
   };
   handleSubmit = e => {
-    e.preventDefault();
-    this.props.login(this.state);
+    e.preventDefault();    
+    if (this.state.username === "" || this.state.password === "") {
+      this.setState(prevState => ({
+        showEmptyInputMessage: true
+      }));
+      return;
+    } else {
+      this.props.logIn(this.state);
+    }
   };
   render() {
     let { from } = this.props.location.state || { from: "/" };
-    console.log(22222222, this.props);
-    console.log(333333333, "from", from);
     // let { redirectToReferrer } = this.state;
     // if (redirectToReferrer) return <Redirect to={from} />;
     if (this.props.isAuthenticated) {
       this.props.history.push("/protected");
     }
-    console.log("login in props", this.props.location.state);
     return (
       <div>
         <p>You must log in to view the page at {from} </p>
@@ -107,6 +105,11 @@ class Login extends Component {
                 id="username"
                 placeholder="username"
               />
+              {this.state.showEmptyInputMessage ? (
+                <p className="text-danger">This is a required field</p>
+              ) : (
+                false
+              )}
             </FormGroup>
             <FormGroup>
               <Label for="examplePassword">password</Label>
@@ -116,6 +119,11 @@ class Login extends Component {
                 id="password"
                 placeholder="password"
               />
+              {this.state.showEmptyInputMessage ? (
+                <p className="text-danger">This is a required field</p>
+              ) : (
+                false
+              )}
             </FormGroup>
             {this.props.errorMessage ? (
               <p className="text-danger">
@@ -145,7 +153,6 @@ class Login extends Component {
   }
 }
 const mapStateToProps = state => {
-  console.log("Login state", state);
   return {
     isAuthenticated: state.auth.isAuthenticated,
     isLoginFailed: state.auth.isLoginFailed,
@@ -158,11 +165,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    login: credential => {
-      dispatch(LoginRequest(credential));
+    logIn: credential => {
+      dispatch(loginRequest(credential));
     },
     loginCancel: () => {
-      dispatch(LoginCancel());
+      dispatch(loginCancel());
     }
   };
 };

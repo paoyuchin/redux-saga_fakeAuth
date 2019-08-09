@@ -7,7 +7,7 @@ import {
   Redirect,
   withRouter
 } from "react-router-dom";
-import { LogOut } from "../store/action/actions";
+import { logOut } from "../store/action/actions";
 import "../App.css";
 import { Button } from "reactstrap";
 
@@ -20,7 +20,7 @@ class AuthStatus extends Component {
           size="sm"
           color="primary"
           onClick={() => {
-            this.props.logout();
+            this.props.logOut();
             this.props.history.push("/");
           }}
         >
@@ -41,8 +41,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logout: () => {
-      dispatch(LogOut());
+    logOut: () => {
+      dispatch(logOut());
     }
   };
 };

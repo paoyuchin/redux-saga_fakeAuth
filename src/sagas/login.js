@@ -3,21 +3,45 @@ import {
 } from 'redux-saga/effects';
 import {call, put, fork, take, cancel} from 'redux-saga/effects';
 import {
-  LOGIN_REQUEST,
-  LOGIN_SUCCESS,
-  LOGIN_ERROR,
-  LOGIN_CANCEL,
-  LOGOUT,
-  LOGINFAILED,
-  LOGOUT_SUCCESS,
-  LOGOUT_REQUEST
+ LOGIN_REQUEST,
+ LOGOUT_REQUEST,
+ LOGIN_CANCEL,
+ LOGIN_SUCCESS,
+ LOGIN_ERROR,
+ LOGOUT_SUCCESS
 } from '../store/action/actions';
 import {loginAPI} from '../API'
 
 export function* watchRequestLogin() {
-    console.log(1, 'watch request')
+    console.log('watch request')
     yield takeEvery(LOGIN_REQUEST, loginFlow);
 };
+export function* loginFlow(action) {
+    const task = yield fork(authorize, action)
+    yield take(LOGIN_CANCEL)
+    yield cancel(task)
+}
+
+export function* authorize(action) {
+    try {
+        const response = yield call(loginAPI, action.credential)
+        yield put({
+            type: LOGIN_SUCCESS,
+            response
+        })
+    } catch (error) {
+        console.log('error', error)
+        yield put({
+            type: LOGIN_ERROR,
+            error
+        })
+    } finally {
+        console.log('cancelled')
+    }
+}
+
+
+
 export function* watchRequestLogout(){
     console.log(886, 'watch logout')
     yield takeEvery(LOGOUT_REQUEST, logoutFlow);
@@ -31,31 +55,8 @@ export function* logoutFlow() {
 }
 
 
-export function* authorize(action){
-    console.log(3, 'authorized', action.credential)
-    try {
-        const response = yield call(loginAPI, action.credential)
-        yield put({
-            type: LOGIN_SUCCESS,
-            response: response
-        })
-    } catch (error) {
-        console.log('error', error)
-        yield put({
-            type: LOGIN_ERROR,
-            error
-        })
-    } finally {
-        console.log('cancelled')
-    }
-}
 
-export function* loginFlow(action) {
-    console.log('login flow', action)
-    const task = yield fork(authorize, action)
-    yield take(LOGIN_CANCEL)
-    yield cancel(task)
-}
+
 // export function* logout(action) {
 //     console.log(886, 'logout', action)
 //     const task = yield fork(authorize, action)
